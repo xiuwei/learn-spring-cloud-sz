@@ -1,5 +1,6 @@
 package com.example.consumer.controller;
 
+import com.example.consumer.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,10 +10,10 @@ import org.springframework.web.client.RestTemplate;
 public class ConsumerController {
 
     @Autowired
-    RestTemplate restTemplate;
+    HelloService helloService;
 
     @GetMapping(value = "/ribbon-consumer")
     public String hello(){
-        return restTemplate.getForEntity("http://HELLO-SERVICE/hello/jack",String.class).getBody();
+        return helloService.hello();
     }
 }
